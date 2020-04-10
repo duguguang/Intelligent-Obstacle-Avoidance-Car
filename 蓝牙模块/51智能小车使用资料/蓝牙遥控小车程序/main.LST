@@ -1,0 +1,312 @@
+C51 COMPILER V8.06   MAIN                                                                  05/18/2016 13:59:28 PAGE 1   
+
+
+C51 COMPILER V8.06, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /**********************亚博智能小车黑线循迹例程************************
+   2          *  平台：BST-V51  + Keil uVision3 + STC89C52RC 
+   3          *  名称：智能小车例程
+   4          *  公司：深圳市亚博智能科技有限公司     
+   5          *  编写：罗工
+   6          *  日期：2016-5-10
+   7          *  晶振:11.0592MHZ
+   8          *  说明：免费开源，不提供源代码分析，有问题直接到交流群交流
+   9          *  硬件设置：要有自己动手能力，进行组装接线和传感器灵敏度的调试，才能完成实验
+  10          *  使用说明：根据下面IO口自己用杜邦线连接各种模块，可以自己修改各种模块IO口 
+  11          ******************************************************************/
+  12           //按下K4按键，1秒左右启电小车
+  13           //按下复位健可以停止小车       
+  14          
+  15          #include <reg52.h>           //包含52系统头文件
+  16          #include "bst_car.h"     //包含bst_car.h智能小车头文件
+  17          
+  18          unsigned char pwm_val_left  =0;//变量定义
+  19          unsigned char pwm_val_right =0;
+  20          unsigned char push_val_left ;// 左电机占空比N/20 //速度调节变量 0-20。。。0最小，20最大
+  21          unsigned char push_val_right ;// 右电机占空比N/20 
+  22                                                                     // 大家可以根据循迹效果修改以上两个数值 
+  23          bit Right_PWM_ON=1;                //右电机PWM开关
+  24          bit Left_PWM_ON =1;                        //左电机PWM开关
+  25          
+  26          unsigned char control=0X03;//车运动控制全局变量
+  27          
+  28          //延时函数      
+  29          void delay(unsigned int xms)                            
+  30          {
+  31   1          unsigned int i,j;
+  32   1              for(i=xms;i>0;i--)                    //i=xms即延时约xms毫秒
+  33   1          for(j=112;j>0;j--);
+  34   1      }
+  35          
+  36          //前进
+  37           void run(void)
+  38          {
+  39   1          //push_val_left=5;   //速度调节变量 0-20。。。0最小，20最大
+  40   1              //push_val_right=5;
+  41   1              Left_moto_go ;   //左电机往前走
+  42   1              Right_moto_go ;  //右电机往前走
+  43   1      }
+  44          
+  45          //左转
+  46           void leftrun(void)
+  47          {        
+  48   1           //push_val_left=5;
+  49   1               //push_val_right=5;
+  50   1               Right_moto_go ;  //右电机往前走
+  51   1           Left_moto_Stop ;  //左电机停止
+  52   1      }
+  53          
+  54          //右转
+  55          void  rightrun(void)
+C51 COMPILER V8.06   MAIN                                                                  05/18/2016 13:59:28 PAGE 2   
+
+  56          { 
+  57   1               //push_val_left=5;
+  58   1               //push_val_right=5;
+  59   1           Left_moto_go  ;   //左电机往前走
+  60   1               Right_moto_Stop   ;  //右电机往前走    
+  61   1      }
+  62          
+  63          //后退
+  64          void back(void)
+  65          {
+  66   1      
+  67   1         Left_moto_back  ;  // 左轮后退
+  68   1        Right_moto_back  ;  // 左轮后退
+  69   1      
+  70   1      
+  71   1      }
+  72          
+  73          //停转
+  74          void stop(void)
+  75          {
+  76   1        Right_moto_Stop  ;   //停转
+  77   1        Left_moto_Stop   ;   //
+  78   1      
+  79   1      }
+  80          
+  81          
+  82          //左旋转
+  83          void tleft(void)
+  84          {
+  85   1        Left_moto_go  ;   //左电机往前走
+  86   1        Right_moto_back  ;  // 左轮后退
+  87   1      }
+  88          
+  89          //右旋转
+  90          void tright(void)
+  91          {
+  92   1        Left_moto_back  ;   //左电机往前走
+  93   1        Right_moto_go ;  // 左轮后退
+  94   1      }
+  95          
+  96          
+  97          
+  98          
+  99          /************************************************************************/
+ 100          //                   PWM调制电机转速                                   
+ 101          
+ 102          //                   左电机调速                                        
+ 103          /*调节push_val_left的值改变电机转速,占空比*/
+ 104          void pwm_out_left_moto(void)
+ 105          {  
+ 106   1           if(Left_PWM_ON)
+ 107   1           {
+ 108   2                if(pwm_val_left<=push_val_left)
+ 109   2                    {
+ 110   3                         EN1=1; 
+ 111   3                    }
+ 112   2                    else 
+ 113   2                    {
+ 114   3                         EN1=0;
+ 115   3                }
+ 116   2                if(pwm_val_left>=32)
+ 117   2                    pwm_val_left=0;
+C51 COMPILER V8.06   MAIN                                                                  05/18/2016 13:59:28 PAGE 3   
+
+ 118   2           }
+ 119   1           else    
+ 120   1           {
+ 121   2                EN1=0;   //若未开启PWM则EN1=0 左电机 停止
+ 122   2           }
+ 123   1      }
+ 124          /******************************************************************/
+ 125          /*                    右电机调速                                  */  
+ 126          void pwm_out_right_moto(void)
+ 127          { 
+ 128   1          if(Right_PWM_ON)
+ 129   1          { 
+ 130   2              if(pwm_val_right<=push_val_right)       //20ms内电平信号 111 111 0000 0000 0000 00
+ 131   2                  {
+ 132   3                      EN2=1;                                                  //占空比6:20
+ 133   3              }
+ 134   2                  else 
+ 135   2                  {
+ 136   3                      EN2=0;
+ 137   3              }
+ 138   2                  if(pwm_val_right>=32)
+ 139   2                  pwm_val_right=0;
+ 140   2          }
+ 141   1          else    
+ 142   1          {
+ 143   2              EN2=0;    //若未开启PWM则EN2=0 右电机 停止
+ 144   2          }
+ 145   1      }
+ 146                 
+ 147                 
+ 148          //TIMER0中断服务子函数产生PWM信号
+ 149          void timer0()interrupt 1 using 2
+ 150          {
+ 151   1           TH0=0XFC;    //1Ms定时
+ 152   1               TL0=0X66;
+ 153   1               pwm_val_left++;
+ 154   1               pwm_val_right++;
+ 155   1               pwm_out_left_moto();
+ 156   1               pwm_out_right_moto();
+ 157   1       }      
+ 158          
+ 159           /******************************************************************/
+ 160          /* 串口中断程序*/
+ 161          /******************************************************************/
+ 162          void UART_SER () interrupt 4
+ 163          {
+ 164   1              unsigned char n;        //定义临时变量
+ 165   1      
+ 166   1              if(RI)          //判断是接收中断产生
+ 167   1              {
+ 168   2                      RI=0;   //标志位清零
+ 169   2                      n=SBUF; //读入缓冲区的值
+ 170   2      
+ 171   2                      control=n;
+ 172   2      
+ 173   2                      switch(n)
+ 174   2                      {
+ 175   3                              case 0X08:push_val_left =1;push_val_right =1;break;
+ 176   3                              case 0X09:push_val_left =4;push_val_right =4;break;
+ 177   3                              case 0X0A:push_val_left =8;push_val_right =8;break;
+ 178   3                              case 0X0B:push_val_left =12;push_val_right =12;break;
+ 179   3                              case 0X0C:push_val_left =16;push_val_right =16;break;
+C51 COMPILER V8.06   MAIN                                                                  05/18/2016 13:59:28 PAGE 4   
+
+ 180   3                              case 0X0D:push_val_left =20;push_val_right =20;break;
+ 181   3                              case 0X0E:push_val_left =24;push_val_right =24;break;
+ 182   3                              case 0X0F:push_val_left =28;push_val_right =28;break;
+ 183   3                      }
+ 184   2              }
+ 185   1      
+ 186   1      }
+ 187          
+ 188          
+ 189           
+ 190          
+ 191          void keyscan(void)              //按键扫描函数
+ 192          {
+ 193   1          A:    if(K4==0)                     //判断是否有按下信号
+ 194   1                      {
+ 195   2                          delay(10);            //延时10ms
+ 196   2                              if(K4==0)                       //再次判断是否按下
+ 197   2                               {
+ 198   3                                  FM=0;               //蜂鸣器响              
+ 199   3                                  while(K4==0);       //判断是否松开按键
+ 200   3                                  FM=1;               //蜂鸣器停止  
+ 201   3                               }
+ 202   2                          else
+ 203   2                           {
+ 204   3                             goto A;        //跳转到A重新检测
+ 205   3                            }
+ 206   2                      }
+ 207   1                      else
+ 208   1                      {
+ 209   2                        goto A;             //跳转到A重新检测
+ 210   2                      }
+ 211   1      }
+ 212          
+ 213          
+ 214          //pwm初始化
+ 215          void pwmint(void)
+ 216          {
+ 217   1              TMOD=0X01;
+ 218   1                 TH0= 0XFC;  //1ms定时
+ 219   1          TL0= 0X66;
+ 220   1              TR0= 1;
+ 221   1              ET0= 1;
+ 222   1              EA = 1;     //开总中断
+ 223   1      
+ 224   1      }
+ 225          
+ 226          //蓝牙初始化
+ 227          void boothint(void)
+ 228          {
+ 229   1         
+ 230   1              SCON = 0x50;    // SCON: 模式1, 8-bit UART, 使能接收
+ 231   1              TMOD |= 0x20;
+ 232   1              TH1=0xfd;               //波特率9600 初值
+ 233   1              TL1=0xfd;
+ 234   1              TR1= 1;
+ 235   1              EA = 1;     //开总中断
+ 236   1              ES= 1;                  //打开串口中断
+ 237   1      
+ 238   1      
+ 239   1      }
+ 240          
+ 241          
+C51 COMPILER V8.06   MAIN                                                                  05/18/2016 13:59:28 PAGE 5   
+
+ 242          //主函数
+ 243          void main(void)
+ 244          {       
+ 245   1          P0=0X00;    //关电机        
+ 246   1          keyscan();  //按键启动检测
+ 247   1              delay(1000);//1s后启动
+ 248   1      
+ 249   1          pwmint();
+ 250   1              boothint();
+ 251   1      
+ 252   1              while(1)        //无限循环
+ 253   1              { 
+ 254   2      
+ 255   2                 if(control>0X07)
+ 256   2                 {
+ 257   3                 
+ 258   3                      stop();
+ 259   3                 
+ 260   3                 }
+ 261   2      
+ 262   2      
+ 263   2      
+ 264   2                      switch(control)
+ 265   2                      {
+ 266   3                              case 0X01:run();break;
+ 267   3                              case 0X02:leftrun();break;
+ 268   3                              case 0X03:stop();break;
+ 269   3                              case 0X04:rightrun();break;
+ 270   3                              case 0X05:back();break;
+ 271   3                              case 0X06:tleft();break;
+ 272   3                              case 0X07:tright();break;
+ 273   3                         }
+ 274   2      
+ 275   2                               
+ 276   2               }
+ 277   1      
+ 278   1      }
+ 279             
+ 280          
+ 281          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    478    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

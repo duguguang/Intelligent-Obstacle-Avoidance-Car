@@ -1,0 +1,7 @@
+关于文件夹下的资源说明
+IDE(集成开发环境):arduino-1.7.11.org-windows 下载地址:https://pan.baidu.com/s/1PeYUHgJRuD4yT8vsb5cRSg 
+提取码：wiv3 
+
+MsTimer2.zip：时钟中断库
+Inter_Motor:基于中断方案的实现
+Motor_Orign:循环运行的原始方案

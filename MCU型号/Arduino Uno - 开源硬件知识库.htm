@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-firefox client-firefox-5 client-gecko client-win" lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Arduino Uno - 开源硬件知识库</title>
+<meta name="generator" content="MediaWiki 1.17.0">
+<link rel="shortcut icon" href="http://kb.open.eefocus.com/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://kb.open.eefocus.com/opensearch_desc.php" title="开源硬件知识库 (zh-cn)">
+<link rel="EditURI" type="application/rsd+xml" href="http://kb.open.eefocus.com/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="开源硬件知识库的Atom订阅" href="http://kb.open.eefocus.com/index.php?title=%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E6%9B%B4%E6%94%B9&amp;feed=atom">
+<link rel="stylesheet" href="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/load.css">
+<meta name="ResourceLoaderDynamicStyles" content=""><link rel="stylesheet" href="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/load_002.css">
+<link rel="stylesheet" href="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/load_002.css">
+<link rel="stylesheet" href="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/load_002.css">
+
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Arduino_Uno skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Arduino Uno</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">出自开源硬件知识库</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					跳转到： <a href="#mw-head">导航</a>,
+					<a href="#p-search">搜索</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tbody><tr><td><div id="toctitle"><h2>目录</h2> <span class="toctoggle">[<a id="togglelink" class="internal" href="#">隐藏</a>]</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#.E7.AE.80.E4.BB.8B"><span class="tocnumber">1</span> <span class="toctext">简介</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.E6.A6.82.E8.A6.81"><span class="tocnumber">2</span> <span class="toctext">概要</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#.E7.94.B5.E8.B7.AF.E5.9B.BE.E5.92.8CPCB"><span class="tocnumber">3</span> <span class="toctext">电路图和PCB</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.E7.94.B5.E6.BA.90"><span class="tocnumber">4</span> <span class="toctext">电源</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#.E5.AD.98.E5.82.A8.E5.99.A8"><span class="tocnumber">5</span> <span class="toctext">存储器</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#.E8.BE.93.E5.85.A5.E8.BE.93.E5.87.BA"><span class="tocnumber">6</span> <span class="toctext">输入输出</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#.E9.80.9A.E4.BF.A1.E6.8E.A5.E5.8F.A3"><span class="tocnumber">7</span> <span class="toctext">通信接口</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#.E4.B8.8B.E8.BD.BD.E7.A8.8B.E5.BA.8F"><span class="tocnumber">8</span> <span class="toctext">下载程序</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#.E7.89.A9.E7.90.86.E7.89.B9.E5.BE.81"><span class="tocnumber">9</span> <span class="toctext">物理特征</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#.E6.B3.A8.E6.84.8F.E8.A6.81.E7.82.B9"><span class="tocnumber">10</span> <span class="toctext">注意要点</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#.E6.89.A9.E5.B1.95.E9.98.85.E8.AF.BB"><span class="tocnumber">11</span> <span class="toctext">扩展阅读</span></a></li>
+</ul>
+</td></tr></tbody></table>
+<h2> <span class="mw-headline" id=".E7.AE.80.E4.BB.8B">简介</span></h2>
+<p>Arduino UNO是Arduino USB接口系列的最新版本，作为Arduino平台的参考标准模板。UNO的处理器核心是<a href="http://kb.open.eefocus.com/index.php/ATmega328" title="ATmega328" class="mw-redirect">ATmega328</a>，同时具有14路数字输入/输出口（其中6路可作为PWM输出），6路模拟输入，一个16MHz晶体振荡器，一个USB口，一个电源插座，一个ICSP header和一个复位按钮。UNO已经发布到第三版，与前两版相比有以下新的特点：
+</p>
+<ul><li>在AREF处增加了两个管脚SDA和SCL，支持I2C接口；增加IOREF和一个预留管脚，将来扩展板将能兼容5V和3.3V核心板。
+</li><li>改进了复位电路设计
+</li><li>USB接口芯片由ATmega16U2替代了ATmega8U2
+</li></ul>
+<p><br><a href="http://kb.open.eefocus.com/index.php/%E6%96%87%E4%BB%B6:ArduinoUno_R3_Front_450px.jpg" class="image"><img alt="ArduinoUno R3 Front 450px.jpg" src="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/ArduinoUno_R3_Front_450px.jpg" width="450" height="311"></a><a href="http://kb.open.eefocus.com/index.php/%E6%96%87%E4%BB%B6:ArduinoUno_R3_Back_450px.jpg" class="image"><img alt="ArduinoUno R3 Back 450px.jpg" src="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/ArduinoUno_R3_Back_450px.jpg" width="441" height="311"></a>
+</p>
+<h2> <span class="mw-headline" id=".E6.A6.82.E8.A6.81">概要</span></h2>
+<ul><li>处理器            ATmega328 
+</li><li>工作电压          5V 
+</li><li>输入电压（推荐）  7-12V 
+</li><li>输入电压（范围）  6-20V 
+</li><li>数字IO脚          14 (其中6路作为PWM输出） 
+</li><li>模拟输入脚        6 
+</li><li>IO脚直流电流      40 mA 
+</li><li>3.3V脚直流电流   50 mA 
+</li><li>Flash Memory    32 KB （ATmega328，其中0.5 KB 用于 bootloader） 
+</li><li>SRAM            2 KB （ATmega328） 
+</li><li>EEPROM          1 KB （ATmega328） 
+</li><li>工作时钟          16 MHz
+</li></ul>
+<h2> <span class="mw-headline" id=".E7.94.B5.E8.B7.AF.E5.9B.BE.E5.92.8CPCB">电路图和PCB</span></h2>
+<p>所有的参考设计是基于Atmega8，168，or 328，他们的管脚是兼容的
+</p>
+<ul><li>电路图  <a href="http://arduino.cc/en/uploads/Main/Arduino_Uno_Rev3-schematic.pdf" class="external free" rel="nofollow">http://arduino.cc/en/uploads/Main/Arduino_Uno_Rev3-schematic.pdf</a>
+</li><li>硬件设计文件（Eagle文件） <a href="http://arduino.cc/en/uploads/Main/arduino_Uno_Rev3-02-TH.zip" class="external free" rel="nofollow">http://arduino.cc/en/uploads/Main/arduino_Uno_Rev3-02-TH.zip</a>
+</li></ul>
+<h2> <span class="mw-headline" id=".E7.94.B5.E6.BA.90">电源</span></h2>
+<p>Arduino UNO可以通过3种方式供电，而且能自动选择供电方式
+</p>
+<ul><li>外部直流电源通过电源插座供电。
+</li><li>电池连接电源连接器的GND和VIN引脚。
+</li><li>USB接口直接供电。
+</li></ul>
+<p>电源引脚说明
+</p>
+<ul><li>VIN    --- 当外部直流电源接入电源插座时，可以通过VIN向外部供电；也可以通过此引脚向UNO直接供电；VIN有电时将忽略从USB或者其他引脚接入的电源。
+</li><li>5V     --- 通过稳压器或USB的5V电压，为UNO上的5V芯片供电。
+</li><li>3.3V   --- 通过稳压器产生的3.3V电压，最大驱动电流50mA。
+</li><li>GND    --- 地脚。
+</li></ul>
+<h2> <span class="mw-headline" id=".E5.AD.98.E5.82.A8.E5.99.A8">存储器</span></h2>
+<p><a href="http://kb.open.eefocus.com/index.php/ATmega328" title="ATmega328" class="mw-redirect">ATmega328</a>包括了片上32KB Flash，其中0.5KB用于Bootloader。同时还有2KB SRAM和1KB EEPROM。
+</p>
+<h2> <span class="mw-headline" id=".E8.BE.93.E5.85.A5.E8.BE.93.E5.87.BA">输入输出</span></h2>
+<ol><li>14路数字输入输出口：工作电压为5V，每一路能输出和接入最大电流为40mA。每一路配置了20-50K欧姆内部上拉电阻（默认不连接)。除此之外，有些引脚有特定的功能
+<ul><li>串口信号RX（0号）、TX（1号）: 与内部 ATmega8U2 USB-to-TTL 芯片相连，提供TTL电压水平的串口接收信号。 
+</li><li>外部中断（2号和3号）：触发中断引脚，可设成上升沿、下降沿或同时触发。 
+</li><li>脉冲宽度调制PWM（3、5、6、9、10 、11）：提供6路8位PWM输出。 
+</li><li>SPI（10(SS)，11(MOSI)，12(MISO)，13(SCK)）：SPI通信接口。 
+</li><li>LED（13号）：Arduino专门用于测试LED的保留接口，输出为高时点亮LED，反之输出为低时LED熄灭。
+</li></ul>
+</li><li>6路模拟输入A0到A5：每一路具有10位的分辨率（即输入有1024个不同值），默认输入信号范围为0到5V，可以通过AREF调整输入上限。除此之外，有些引脚有特定功能
+<ul><li><a href="http://kb.open.eefocus.com/index.php?title=TWI&amp;action=edit&amp;redlink=1" class="new" title="TWI（尚未撰写）">TWI</a>接口（SDA A4和SCL A5）：支持通信接口（兼容I2C总线）。 
+</li></ul>
+</li><li>AREF：模拟输入信号的参考电压。
+</li><li>Reset：信号为低时复位单片机芯片。
+</li></ol>
+<h2> <span class="mw-headline" id=".E9.80.9A.E4.BF.A1.E6.8E.A5.E5.8F.A3">通信接口</span></h2>
+<ol><li>串口：ATmega328内置的UART可以通过数字口0（RX）和1（TX）与外部实现串口通信；ATmega16U2可以访问数字口实现USB上的虚拟串口。
+</li><li>TWI（兼容I2C）接口：
+</li><li>SPI 接口：
+</li></ol>
+<h2> <span class="mw-headline" id=".E4.B8.8B.E8.BD.BD.E7.A8.8B.E5.BA.8F">下载程序</span></h2>
+<ul><li>Arduino UNO上的ATmega328已经预置了<a href="http://kb.open.eefocus.com/index.php/Bootloader" title="Bootloader" class="mw-redirect">bootloader</a>程序，因此可以通过Arduino软件直接下载程序到UNO中，参见[[]]。
+</li><li>可以直接通过UNO上ICSP header直接下载程序到ATmega328，参见[[]]。
+</li><li>ATmega16U2的Firmware（固件）也可以通过DFU工具升级，参见[[]]。
+</li></ul>
+<h2> <span class="mw-headline" id=".E7.89.A9.E7.90.86.E7.89.B9.E5.BE.81">物理特征</span></h2>
+<p>Arduino UNO的最大尺寸为2.7 x 2.1 inches。
+</p>
+<h2> <span class="mw-headline" id=".E6.B3.A8.E6.84.8F.E8.A6.81.E7.82.B9">注意要点</span></h2>
+<ul><li>Arduino UNO上USB口附近有一个可重置的保险丝，对电路起到保护作用。当电流超过500mA是会断开USB连接。
+</li><li>Arduino UNO提供了自动复位设计，可以通过主机复位。这样通过Arduino软件下在程序到UNO中软件可以自动复位，不需要在复位按钮。在印制板上丝印"RESET EN"处可以使能和禁止该功能。
+</li></ul>
+<h2> <span class="mw-headline" id=".E6.89.A9.E5.B1.95.E9.98.85.E8.AF.BB">扩展阅读</span></h2>
+<p><a href="http://arduino.cc/en/Main/ArduinoBoardUno" class="external free" rel="nofollow">http://arduino.cc/en/Main/ArduinoBoardUno</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 42/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key eefocus_kb-wiki_:pcache:idhash:121-0!*!0!!zh-cn!2!edit=0 and timestamp 20170503005937 -->
+<div class="printfooter">
+取自“<a href="http://kb.open.eefocus.com/index.php/Arduino_Uno">http://kb.open.eefocus.com/index.php/Arduino_Uno</a>”</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id="catlinks" class="catlinks catlinks-allhidden"></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>个人工具</h5>
+	<ul>
+					<li id="pt-login"><a href="http://kb.open.eefocus.com/index.php?title=%E7%89%B9%E6%AE%8A:%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95&amp;returnto=Arduino_Uno" title="我们鼓励您登录，但这并不是必须的 [alt-shift-o]" accesskey="o">登录</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>名字空间</h5>
+	<ul>
+					<li id="ca-nstab-main" class="selected"><span><a href="http://kb.open.eefocus.com/index.php/Arduino_Uno" title="查看页面内容 [alt-shift-c]" accesskey="c">页面</a></span></li>
+					<li id="ca-talk" class="new"><span><a href="http://kb.open.eefocus.com/index.php?title=%E8%AE%A8%E8%AE%BA:Arduino_Uno&amp;action=edit&amp;redlink=1" title="关于页面正文的讨论 [alt-shift-t]" accesskey="t">讨论</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>变换</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>查看</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="http://kb.open.eefocus.com/index.php/Arduino_Uno">阅读</a></span></li>
+					<li id="ca-viewsource"><span><a href="http://kb.open.eefocus.com/index.php?title=Arduino_Uno&amp;action=edit" title="此页面已被保护，你可以查看其源代码。 [alt-shift-e]" accesskey="e">查看源代码</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="http://kb.open.eefocus.com/index.php?title=Arduino_Uno&amp;action=history" title="此页面的早前修订版本 [alt-shift-h]" accesskey="h">查看历史</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>动作</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">搜索</label></h5>
+	<form action="/index.php" id="searchform">
+		<input name="title" value="特殊:搜索" type="hidden">
+				<input id="searchInput" name="search" title="搜索该网站 [alt-shift-f]" accesskey="f" type="text">
+		<input name="go" class="searchButton" id="searchGoButton" value="进入" title="如果相同的标题存在的话便直接前往该页面" type="submit">
+		<input name="fulltext" class="searchButton" id="mw-searchButton" value="搜索" title="搜索该文字的页面" type="submit">
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(/images/logo.png);" href="http://kb.open.eefocus.com/index.php/%E9%A6%96%E9%A1%B5" title="访问首页"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id="p-navigation">
+	<h5>导航</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage-description"><a href="http://kb.open.eefocus.com/index.php/%E9%A6%96%E9%A1%B5" title="访问首页 [alt-shift-z]" accesskey="z">首页</a></li>
+					<li id="n-portal"><a href="http://kb.open.eefocus.com/index.php/%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93:%E7%A4%BE%E5%8C%BA" title="关于本计划，您可以做什么，应该如何做">社区入口</a></li>
+					<li id="n-currentevents"><a href="http://kb.open.eefocus.com/index.php/%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93:%E5%BD%93%E5%89%8D%E4%BA%8B%E4%BB%B6" title="查找当前事件的背景信息">当前事件</a></li>
+					<li id="n-recentchanges"><a href="http://kb.open.eefocus.com/index.php/%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E6%9B%B4%E6%94%B9" title="列出该网站的最近修改 [alt-shift-r]" accesskey="r">最近更改</a></li>
+					<li id="n-randompage"><a href="http://kb.open.eefocus.com/index.php/%E7%89%B9%E6%AE%8A:%E9%9A%8F%E6%9C%BA%E9%A1%B5%E9%9D%A2" title="随机载入一个页面 [alt-shift-x]" accesskey="x">随机页面</a></li>
+					<li id="n-help"><a href="http://kb.open.eefocus.com/index.php/%E5%B8%AE%E5%8A%A9:%E7%9B%AE%E5%BD%95" title="寻求帮助">帮助</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>工具箱</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="http://kb.open.eefocus.com/index.php/%E7%89%B9%E6%AE%8A:%E9%93%BE%E5%85%A5%E9%A1%B5%E9%9D%A2/Arduino_Uno" title="列出所有与此页相链的页面 [alt-shift-j]" accesskey="j">链入页面</a></li>
+						<li id="t-recentchangeslinked"><a href="http://kb.open.eefocus.com/index.php/%E7%89%B9%E6%AE%8A:%E9%93%BE%E5%87%BA%E6%9B%B4%E6%94%B9/Arduino_Uno" title="从此页链出的所有页面的更改 [alt-shift-k]" accesskey="k">链出更改</a></li>
+																																										<li id="t-specialpages"><a href="http://kb.open.eefocus.com/index.php/%E7%89%B9%E6%AE%8A:%E7%89%B9%E6%AE%8A%E9%A1%B5%E9%9D%A2" title="所有特殊页面列表 [alt-shift-q]" accesskey="q">特殊页面</a></li>
+									<li id="t-print"><a href="http://kb.open.eefocus.com/index.php?title=Arduino_Uno&amp;printable=yes" rel="alternate" title="这个页面的可打印版本 [alt-shift-p]" accesskey="p">可打印版</a></li>
+						<li id="t-permalink"><a href="http://kb.open.eefocus.com/index.php?title=Arduino_Uno&amp;oldid=444" title="这个页面修订版本的永久链接">永久链接</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> 此页面最后修订于2011年11月23日 (星期三) 01:50。</li>
+																							<li id="footer-info-viewcount">此页面已被浏览过147,003次。</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="http://kb.open.eefocus.com/index.php/%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93:%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96" title="开源硬件知识库:隐私政策">隐私政策</a></li>
+																							<li id="footer-places-about"><a href="http://kb.open.eefocus.com/index.php/%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93:%E5%85%B3%E4%BA%8E" title="开源硬件知识库:关于">关于开源硬件知识库</a></li>
+																							<li id="footer-places-disclaimer"><a href="http://kb.open.eefocus.com/index.php/%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93:%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E" title="开源硬件知识库:免责声明">免责声明</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/load.php"></script><script src="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/load_003.php"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", 
+"wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, 
+"wgPageName": "Arduino_Uno", "wgTitle": "Arduino Uno", "wgAction": 
+"view", "wgArticleId": 121, "wgIsArticle": true, "wgUserName": null, 
+"wgUserGroups": ["*"], "wgCurRevisionId": 444, "wgCategories": [], 
+"wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": 
+[]});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script><script type="text/javascript" src="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/load_004.php"></script>
+
+<script src="Arduino%20Uno%20-%20%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E5%BA%93_files/load_002.php"></script>
+<script>if ( window.mediaWiki ) {
+	
+mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+
+	
+"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"zh-cn","language":"zh-cn","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.198 secs. -->			
+
+
+</body></html>

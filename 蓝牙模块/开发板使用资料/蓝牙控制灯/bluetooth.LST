@@ -1,0 +1,77 @@
+C51 COMPILER V8.06   BLUETOOTH                                                             04/27/2016 15:12:09 PAGE 1   
+
+
+C51 COMPILER V8.06, COMPILATION OF MODULE BLUETOOTH
+OBJECT MODULE PLACED IN bluetooth.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE bluetooth.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg52.h> //头文件调用，写程序时都要加上
+   2          #include <stdlib.h>
+   3          #define uint unsigned int //宏定义，为了后面定义变量书写简便
+   4          #define uchar unsigned char
+   5          
+   6          
+   7          
+   8          sbit LED0=P1^0;
+   9          sbit LED1=P1^1;
+  10          sbit LED2=P1^2;
+  11          sbit LED3=P1^3;
+  12          sbit LED4=P1^4;
+  13          sbit LED5=P1^5;
+  14          sbit LED6=P1^6;
+  15          sbit LED7=P1^7;
+  16          
+  17          void main (void)
+  18          {
+  19   1              SCON = 0x50;    // SCON: 模式1, 8-bit UART, 使能接收
+  20   1              TMOD |= 0x20;
+  21   1              TH1=0xfd;               //波特率9600 初值
+  22   1              TL1=0xfd;
+  23   1              TR1= 1;
+  24   1              EA= 1;                  //打开总中断
+  25   1              ES= 1;                  //打开串口中断
+  26   1              while (1)               //主循环不做任何动作
+  27   1              {
+  28   2              }
+  29   1      }
+  30          /******************************************************************/
+  31          /* 串口中断程序*/
+  32          /******************************************************************/
+  33          void UART_SER () interrupt 4
+  34          {
+  35   1              uchar n;        //定义临时变量
+  36   1              if(RI)          //判断是接收中断产生
+  37   1              {
+  38   2                      RI=0;   //标志位清零
+  39   2                      n=SBUF; //读入缓冲区的值
+  40   2      
+  41   2                      
+  42   2      
+  43   2                      switch(n)
+  44   2                      {
+  45   3      
+  46   3                              case 0X03:LED0=1;LED1=1;LED2=1;LED3=1;LED4=1;LED5=1;LED6=1;LED7=1;break;
+  47   3                              case 0X04:LED0=0;LED1=0;LED2=0;LED3=0;LED4=0;LED5=0;LED6=0;LED7=0;break;
+  48   3      
+  49   3                         }
+  50   2              }
+  51   1      
+  52   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V8.06   BLUETOOTH                                                             04/27/2016 15:12:09 PAGE 2   
+
+   CODE SIZE        =     85    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
